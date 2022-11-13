@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    // Write C code here
+    char c[10];
+    strcpy(c, "1234");        //copying "1234" to string c
+    int a  = atoi(c);         //changing data type of string to int
+    printf("%s  %d",c,a);
+
+    return 0;
+}
