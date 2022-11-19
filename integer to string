@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+	char c[5];
+	//decimal to string 
+	printf("%s",itoa(5,c,10));
+	
+	//decimal to binary string
+	printf("%s",itoa(5,c,2));
+	
+	//decimal to octal string
+	printf("%s",itoa(12,c,8));
+	
+	
+	//decimal 10 to string hexadecimal
+	itoa(10, c, 16);
+    printf("%s",c);
+    
+    //string to int
+    printf("%d",atoi("2556"));
+    
+    return 0;
+}
