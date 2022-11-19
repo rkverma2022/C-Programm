@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main()
+{
+	//change character 5 to string from the given str
+	char str[10]= "2536";
+	char t[2]; t[0]=str[1]; t[1] = '\0';
+	
+    printf("%d",atoi(t));		//atoi(string_name)
+    return 0;
+}
