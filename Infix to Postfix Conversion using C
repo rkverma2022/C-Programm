@@ -1,0 +1,143 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+typedef struct stack{
+	int top;
+	char Operator[30];
+	
+}stack;
+
+
+struct stack Stack;
+char postfix[30];
+int j=0;
+
+
+void push(char c)
+{
+	Stack.top +=1;
+	Stack.Operator[Stack.top] = c;
+	return;
+}
+
+
+int Isempty()
+{
+	if(Stack.top==-1)
+		return 1;
+	else
+		return 0;
+}
+
+
+char pop()
+{
+        int a = Stack.top;
+        Stack.top-=1;
+	   return Stack.Operator[a];
+}
+
+
+char check_ele_stack()
+{
+	return Stack.Operator[Stack.top];
+}
+
+
+void put_in_postfix(char operend)
+{
+	postfix[j] = operend;
+	j++;
+}
+
+
+int main()
+{
+	char expr[30];
+	Stack.top=-1;
+	printf("enter \n");
+	fgets(expr,30,stdin);
+	
+	int i =0;
+	while(i<30){
+		if(expr[i]=='+' || expr[i]=='-'||expr[i]=='*'||expr[i]=='/'||expr[i]=='^'||expr[i]==')'||expr[i]=='(')
+		{
+			if(Isempty()==1)
+			    push(expr[i]);
+			else if(check_ele_stack()==expr[i] && expr[i]!='^')
+			{
+				put_in_postfix(expr[i]);
+			}
+			else if(expr[i]=='+'||expr[i]=='-')
+			{
+				char c = check_ele_stack();
+				if(c=='*'||c=='/'|| c=='+'||c=='-'||c=='^')
+				{
+					
+					put_in_postfix(pop());
+					push(expr[i]);
+				}
+					
+				else if(c=='(')
+				{
+					push(expr[i]);
+				}
+			}
+			else if(expr[i]=='*'||expr[i]=='/')
+			{
+				char c = check_ele_stack();
+				if(c=='*'||c=='/'||c=='^')
+				{
+					
+					put_in_postfix(pop());
+					push(expr[i]);
+				}
+				else if(c=='+'||c=='-'||c=='(')
+				{
+					push(expr[i]);
+				}	
+			}
+			
+			else if(expr[i]=='^')
+			{
+					push(expr[i]);
+			}
+			
+			else if(expr[i]=='(')
+			{
+				push(expr[i]);
+			}
+			
+			else if(expr[i]==')')
+			{
+				do{
+					put_in_postfix(pop());
+				}while(pop()!='(');
+			}
+		}
+		
+		else
+		{
+			if(expr[i]=='\0')
+			{
+				while(Isempty()!=1)
+				{
+					put_in_postfix(pop());
+				}
+				break;
+			}
+			else
+			{
+				put_in_postfix(expr[i]);
+			}
+			
+		}
+		i++;
+	}
+	printf("%s",postfix);
+	
+
+	return 0;
+}
