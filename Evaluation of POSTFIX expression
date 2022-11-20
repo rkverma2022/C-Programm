@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+typedef struct stack{
+	int top;
+	int operend[30];
+}stack;
+
+struct stack Stack;
+
+
+void push(int c)
+{
+	printf(":::::::PUSH FUN CALLED:::::::::\n");
+	Stack.top +=1;
+	Stack.operend[Stack.top] = c;
+}
+
+int Isempty()
+{
+	printf(":::::::EMPTY FUN CALLED:::::::::\n");
+	if(Stack.top==-1)
+		return 1;
+	else
+		return 0;
+}
+
+int pop()
+{
+	printf(":::::::POP FUN CALLED:::::::::\n");
+	int a = Stack.top;
+	Stack.top -=1;
+	return Stack.operend[a];
+}
+
+
+int calculator(char optr)
+{
+	printf(":::::::CALCULATOR FUN CALLED:::::::::\n");
+	int a = pop();
+	int b = pop();
+	
+	switch(optr)
+	{
+	
+		case 43: push(b+a);	break;
+		case 45: push(b-a); break;
+		case 42: push(b*a); break;
+		case 47: push(b/a); break;
+		case 94: push(pow(a,b)); break;
+	}
+	return 0;
+}
+
+int main()
+{
+	Stack.top = -1;
+	
+	char expr[30];
+	printf("ENTER POSTFIX EXPRESSION: \n");
+	fgets(expr,30,stdin);
+	
+	int result=0;
+	
+	int i=0;
+	while(i<30)
+	{
+		
+			
+		if(expr[i]=='+'||expr[i]=='-'||expr[i]=='*'||expr[i]=='/'||expr[i]=='^')
+			calculator(expr[i]);
+			
+		else{
+			if(expr[i +1]=='\0')
+			{
+				result = pop(); 
+				printf("%d",result);
+				break;
+			}
+			else
+			{
+				char C[2];
+				C[0] = expr[i];	C[1]='\0';
+				int n = atoi(C);
+				push(n);
+			}
+			
+		}
+			
+	
+		i++;
+	}
+	printf("\n VALUE OF POSTFIX EXPRE = %d",result);
+
+	return 0;
+}
