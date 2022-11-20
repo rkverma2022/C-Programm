@@ -48,7 +48,7 @@ int calculator(char optr)
 		case 45: push(b-a); break;
 		case 42: push(b*a); break;
 		case 47: push(b/a); break;
-		case 94: push(pow(a,b)); break;
+		case 94: push(pow(b,a)); break;
 	}
 	return 0;
 }
