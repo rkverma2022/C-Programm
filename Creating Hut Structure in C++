@@ -1,0 +1,157 @@
+#include<iostream>
+using namespace std;
+char TajMahal[50][20];
+int main()
+{
+	char Influencer[] = "R. VEDA SHREE";
+	char Customer[] = "THE TAJMAHAL";
+	int shift;
+	for(int i=1;i<=10;i++)
+	{
+		for(int j=1;j<=80;j++)
+		{
+			if(j<40+i && j>40-i)
+			{
+				cout<<"()";
+				shift = i;
+			}
+			else
+			{
+				cout<<"  ";
+			}
+		}
+		cout<<endl;
+	}
+	
+	for(int i=1;i<=5;i++)
+	{
+		for(int j=1;j<=80;j++)
+		{
+			if(j<5+i && j>5-i)
+			{
+				cout<<"^ ";
+				shift++;
+			}
+			else
+			{
+				if(j<40+10+i && j>40-10-i)
+				{
+					cout<<"()";
+				}
+				else
+				{
+					if(j<75+i && j>75-i)
+					{
+						cout<<"^ ";
+						shift++;
+					}
+					else
+					{
+						cout<<"  ";
+					}
+				}
+				
+			}
+
+		}
+		cout<<endl;
+		
+	}
+	
+	for(int i=1;i<=3;i++)
+	{
+		for(int j=1;j<=80;j++)
+		{
+			if(j<10)
+			{
+				cout<<"^ ";
+				shift++;
+			}
+			else
+			{
+				if(j<55 && j>25)
+				{
+					cout<<"{}";
+				}
+				else
+				{
+					if(j>70)
+					{
+						cout<<"^ ";
+						shift++;
+					}
+					else
+					{
+						cout<<"  ";
+					}
+				}
+				
+			}
+
+		}
+		cout<<endl;
+		
+	}
+	int k=0;
+	for(int i=1;i<=15;i++)
+	{
+		for(int j=1;j<=80;j++)
+		{
+			if(j<10)
+			{
+				cout<<"^ ";
+				shift++;
+			}
+			else
+			{
+				if((j<35&& j>25)||(j<55&& j>45) )
+				{
+					cout<<"{}";
+				}
+				else
+				{
+					if(j>70)
+					{
+						cout<<"^ ";
+						shift++;
+					}
+					else
+					{
+						if(j==40 && Influencer[k]!='\0')
+						{
+							cout<<Influencer[k]<<" ";
+							k++;
+						}
+						else
+						{
+							cout<<"  ";
+						}
+					}
+				}
+				
+			}
+
+		}
+		cout<<endl;
+		
+	}
+	k =0;
+	for(int i=1;i<=4;i++)
+	{
+		for(int j=1;j<=21;j++)
+		{
+			cout<<".	";
+		}
+		cout<<endl;
+	}
+	cout<<"							T	H	E		T	A	J	M	A	H	A	L		"<<endl;
+	for(int i=1;i<=3;i++)
+	{
+		for(int j=1;j<=21;j++)
+		{
+			cout<<".	";
+		}
+		cout<<endl;
+	}
+	return 0;
+}
