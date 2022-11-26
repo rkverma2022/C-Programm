@@ -1,0 +1,125 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct treenode{
+    int data;
+    struct treenode* lchild;
+    struct treenode* rchild;
+    struct treenode* parent;
+}treenode;
+struct treenode *binary_tree;
+
+treenode *insertNode(treenode* root, int tdata)
+{
+    struct treenode* tempNode = malloc(sizeof(treenode));
+    tempNode->lchild = NULL;
+    tempNode->rchild = NULL;
+    tempNode->parent = NULL;
+    tempNode->data = tdata;
+
+    struct treenode* ptr = root;
+    while(ptr!=NULL)
+    {
+        while(tdata >= ptr->data)
+        {
+            if(ptr->rchild==NULL)
+            {
+                ptr->rchild = tempNode;
+                tempNode = ptr->parent;
+                return root;
+            }
+            else{
+                ptr = ptr->rchild;
+            }
+        }
+        while(tdata < ptr->data)
+        {
+             if(ptr->lchild==NULL)
+            {
+                ptr->lchild = tempNode;
+                tempNode = ptr->parent;
+                return root;
+            }
+            else{
+                ptr = ptr->lchild;
+            }
+        }
+    }
+}
+
+void binary_search(treenode *root, int key)
+{
+    treenode *ptr = root;
+    int depth=1;
+    while (ptr!=NULL)
+    {
+        while(key >= ptr->data)
+        {
+            if(key == ptr->data)
+            {
+                printf("%d is at depth %d\n",key,depth);
+                return;
+            }
+            else
+            {
+                ptr = ptr->rchild;
+                depth+=1;
+            }
+        }
+        
+        while(key < ptr->data)
+        {
+            if(key == ptr->data)
+            {
+                printf("%d is at depth %d\n",key,depth);
+                return;
+            }
+            else
+            {
+                ptr = ptr->lchild;
+                depth+=1;
+            }
+        }
+    }
+    printf("%d is NOT PRESENT IN BINARY TREE\n",key);
+    return;
+}
+int main()
+{
+    //creating binary_tree
+    binary_tree = malloc(sizeof(treenode));
+    binary_tree->lchild = NULL;
+    binary_tree->rchild = NULL;
+    binary_tree->parent = NULL;
+    printf("ENTER ROOT NODE: ");
+    scanf("%d",&binary_tree->data);
+
+    printf("DO YOU WANT TO ADD MORE NODE: 'y'/'n'? ");
+    int flag = 0;
+    scanf("%d",&flag);
+    while(flag==1)
+    {
+        int tdata;
+        printf("ENTER DATA: ");
+        scanf("%d",&tdata);
+        binary_tree = insertNode(binary_tree, tdata);
+        printf("DO YOU WANT TO ADD MORE NODE: 'y'/'n'? ");
+        scanf("%d",&flag);
+    }
+
+    //searching a key
+    flag =0;
+    printf("WANT TO SEARCH A KEY: '0'/'1'\n");
+    scanf("%d",&flag);
+    while (flag==1)
+    {
+        int key;
+        printf("ENTER THE KEY: ");
+        scanf("%d",&key);
+        binary_search(binary_tree, key);
+        printf("WANT TO SEARCH Another KEY: '0'/'1' ?: \n");
+        scanf("%d",&flag);
+    }
+    
+    return 0;
+
+}
