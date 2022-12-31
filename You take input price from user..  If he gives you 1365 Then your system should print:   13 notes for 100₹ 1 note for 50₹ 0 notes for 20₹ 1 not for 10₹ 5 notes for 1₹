@@ -1,0 +1,26 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int f(int I, int n) 
+{
+    switch (I)
+    {
+        case 0: cout <<"100's Notes  = "<<(n/100)<<endl; return (n%100); 
+        case 1: cout <<"50's Notes = "<<(n/50)<<endl; return (n%50); 
+        case 2: cout <<"20's Notes  = "<<(n/20)<<endl; return (n%20);
+        case 3: cout <<"10's Notes  = "<<(n/10)<<endl; return (n%10); 
+        case 4: cout <<"1's Notes  = "<<n<<endl; return 0; 
+    }
+}
+int main() {
+    int n; 
+    cin>>n;
+    int notes[] = {100,50,20,10,1};
+    for (int i=0;i<5;i++)
+    {
+        
+       n = f(i,n);
+    }
+
+    return 0;
+}
