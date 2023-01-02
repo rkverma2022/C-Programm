@@ -1,0 +1,20 @@
+#include<stdio.h>
+void lower_Case(char *ch)
+{
+    if(*ch == '\0')
+        return;
+
+    if(*ch>= 65 && *ch < 90)
+    {
+        *ch = *ch + 32;
+    }
+    lower_Case(++ch);
+    return;   
+}
+int main()
+{
+    char a[20] = "RAJKumar VerMa";
+    lower_Case(&a[0]);
+    printf("%s",a);
+    return 0;
+}
