@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int Str_Cmp(char s1[], char s2[], int i)
+{
+    if(s1[i]> s2[i])
+        return 1;
+    if(s1[i]< s2[i])
+        return -1;
+    if((s1[i]==s2[i])&&((s1[i]=='\0')||(s2[i]=='\0')))
+        return 0;
+    return Str_Cmp(s1, s2, ++i);
+}
+void lower_Case(char *ch)
+{
+    if(*ch == '\0')
+        return;
+
+    if(*ch>= 65 && *ch < 90)
+    {
+        *ch = *ch + 32;
+    }
+    lower_Case(++ch);
+    return;   
+}
+int main()
+{
+    char s1[25], s2[25];
+    fgets(s1, 25, stdin);
+    fgets(s2, 25, stdin);
+    lower_Case(&s1[0]);
+    lower_Case(&s2[0]);
+    printf(" %s %s %d",s1,s2,Str_Cmp(s1, s2, 0));
+    return 0;
+}
